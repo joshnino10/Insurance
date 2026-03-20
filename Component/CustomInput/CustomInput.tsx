@@ -114,13 +114,17 @@ const styles = StyleSheet.create({
     borderColor: "#B9B9B9",
     borderRadius: 10,
     paddingHorizontal: 12,
-    backgroundColor: "#D9D9D900",
+    backgroundColor: "#D9D9D900", 
     height: 40,
   
-    shadowColor: '#000',
-    shadowOffset: {width:0, height:7},
-    shadowOpacity:0.1,
-    shadowRadius:4
+   
+    shadowColor: '#0000',
+    shadowOffset: { width: 0, height: 7 }, 
+    shadowOpacity: 0.1,
+    shadowRadius: 4,
+  
+   
+    elevation: 4,
   },
 
   input: {
