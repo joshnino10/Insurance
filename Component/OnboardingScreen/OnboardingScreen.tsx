@@ -1,6 +1,6 @@
 import Feather from '@expo/vector-icons/Feather';
 import { LinearGradient } from "expo-linear-gradient";
-import { router, useRouter } from 'expo-router';
+import { useRouter } from 'expo-router';
 import React, { useRef, useState } from "react";
 import {
     Dimensions,

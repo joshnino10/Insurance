@@ -27,7 +27,7 @@ export default function Login() {
    const router = useRouter()
   
       const goToSignUp = ()=>{
-        //   router.push('/signup')
+          router.push('/(auth)/singup')
       }
 
   const validateEmail = (value: string) => {

@@ -23,19 +23,19 @@ import { SafeAreaView } from "react-native-safe-area-context";
     const [password, setPassword] = useState("");
     const [confirmPassword, setConfirmPassword] = useState("");
   
-    // Error states
+    
     const [fullNameError, setFullNameError] = useState("");
     const [emailError, setEmailError] = useState("");
     const [phoneError, setPhoneError] = useState("");
     const [passwordError, setPasswordError] = useState("");
     const [confirmPasswordError, setConfirmPasswordError] = useState("");
   
-    // Checkbox
+  
     const [agreed, setAgreed] = useState(false);
   
-    // Navigation
+  
     const goToLogin = () => {
-      router.push("/");
+      router.push("/(auth)/login");
     };
   
     // Validators
