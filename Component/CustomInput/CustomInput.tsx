@@ -95,12 +95,12 @@ export default function CustomInput({
 
 const styles = StyleSheet.create({
   container: {
-    marginBottom: 20,
+    marginBottom: 25,
     width: "100%",
   },
 
   label: {
-    marginBottom: 10,
+    marginBottom: 15,
     fontSize: 14,
     color: "#333",
     fontWeight: "500",
@@ -140,6 +140,7 @@ const styles = StyleSheet.create({
 
   rightIcon: {
     marginLeft: 10,
+       color: '#B3B3B3'
   },
 
   inputError: {
