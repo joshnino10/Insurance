@@ -6,6 +6,8 @@ import {
   Text,
   View,
   Pressable,
+  TouchableOpacity,
+  StatusBar,
 } from "react-native";
 import React, { useState } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
@@ -59,6 +61,7 @@ export default function Index() {
 
   return (
     <SafeAreaView style={styles.SafeArea}>
+      <StatusBar barStyle='dark-content' backgroundColor='white'/>
       <View style={styles.page}>
         <ScrollView contentContainerStyle={{ paddingBottom: 50 }}>
           <View style={styles.container}>
@@ -128,18 +131,46 @@ export default function Index() {
             </View>
           </View>
 
+          <View style={{ marginVertical: 4, alignSelf: "center" }}>
+            <TouchableOpacity style={styles.socialButton}>
+              <Image
+                source={require("../assets/images/gmail icon.png")}
+                style={styles.socialIcon}
+                resizeMode="contain"
+              />
+              <Text style={styles.socialText}>Continue with Google</Text>
+              <View />
+            </TouchableOpacity>
+          </View>
+          <View style={{ marginVertical: 4, alignSelf: "center" }}>
+            <TouchableOpacity style={styles.socialButton}>
+              <Image
+                source={require("../assets/images/facebook icon.png")}
+                style={styles.socialIcon}
+                resizeMode="contain"
+              />
+              <Text style={styles.socialText}>Continue with Facebook</Text>
+              <View />
+            </TouchableOpacity>
+          </View>
+          <View style={{ marginVertical: 4, alignSelf: "center" }}>
+            <TouchableOpacity style={styles.socialButton}>
+              <Image
+                source={require("../assets/images/apple .png")}
+                style={styles.socialIcon}
+                resizeMode="contain"
+              />
+              <Text style={styles.socialText}>Continue with Apple</Text>
+              <View />
+            </TouchableOpacity>
+          </View>
 
           <View style={styles.SignUpContainer}>
             <Text style={styles.dontHave}>Don’t have an account?</Text>
             <Pressable>
               <Text style={styles.SignUp}>Sign up</Text>
-
             </Pressable>
           </View>
-
-
-
-
         </ScrollView>
       </View>
     </SafeAreaView>
@@ -219,7 +250,7 @@ const styles = StyleSheet.create({
   },
   spanText: {
     color: "#681ABB",
-    fontWeight:'500',
+    fontWeight: "500",
   },
 
   orContainer: {
@@ -239,21 +270,46 @@ const styles = StyleSheet.create({
     fontSize: 14,
     color: "#666",
   },
-  SignUpContainer:{
-    flexDirection:'row',
-    alignSelf:'center',
-    gap:5
-    
+  SignUpContainer: {
+    flexDirection: "row",
+    alignSelf: "center",
+    gap: 5,
+    marginTop:30,
   },
-  dontHave:{
-    fontSize:12
-
+  dontHave: {
+    fontSize: 12,
   },
 
-  SignUp:{
-    fontSize:12,
-    color:'#681ABB',
-    fontWeight:'500',
+  socialButton: {
+    flexDirection: "row",
+    width: 270,
+    alignItems: "center",
+    justifyContent: "space-between",
+    borderWidth: 1,
+    borderColor: "#B9B9B9",
+    borderRadius: 8,
+    paddingVertical: 10,
+    paddingHorizontal: 15,
+    backgroundColor: "#F6F6F600",
+  },
 
-  }
+  socialIcon: {
+    width: 20,
+    height: 20,
+    marginRight: 10,
+  },
+
+  socialText: {
+    fontSize: 15,
+    color: "#707070",
+    fontWeight: "500",
+    textAlignVertical: "center", // works on Android
+    includeFontPadding: false, // helps on Android to truly center
+  },
+
+  SignUp: {
+    fontSize: 12,
+    color: "#681ABB",
+    fontWeight: "500",
+  },
 });
