@@ -13,6 +13,7 @@ import {
     TouchableOpacity,
     View,
 } from "react-native";
+import Animated , { FadeIn, Easing } from "react-native-reanimated"
 
 const { width, height } = Dimensions.get("window");
 
@@ -28,23 +29,23 @@ const OnboardingScreen = () => {
     {
       id: "2",
       BackgroundImage: require("../../assets/images/onboarding image 2.jpg"),
-      Title: "Trusted Doctors \nNear You",
+      Title: "Smart Health \nSavings",
       subTitle:
-        "Connect with certified healthcare professionals quickly and easily.",
+        "Build your health fund daily with micro-savings. Your secure digital wallet dedicated to your wellness.",
     },
     {
       id: "3",
       BackgroundImage: require("../../assets/images/onboarding image 3.jpg"),
-      Title: "Manage Your Health \nEffortlessly",
+      Title: "Micro- \nInsurance",
       subTitle:
-        "Track your appointments, prescriptions, and medical history in one place.",
+        "Get protected instantly. Choose plans that match your needs, starting with pocket change.",
     },
     {
       id: "4",
       BackgroundImage: require("../../assets/images/onboarding image 3.jpg"),
-      Title: "Your Health, Simplified",
+      Title: "Emergency \nReady",
       subTitle:
-        "Everything you need to manage your health, all in one place.",
+        "Instant claims and 24/7 access to guidance. We are here to support you when life happens.",
     },
   ];
 
@@ -52,9 +53,6 @@ const OnboardingScreen = () => {
   const flatListRef = useRef<FlatList>(null);
 
   const router = useRouter()
-
-
-
 
   const handleScroll = (event: any) => {
     const index = Math.round(event.nativeEvent.contentOffset.x / width);
@@ -66,7 +64,6 @@ const OnboardingScreen = () => {
       flatListRef.current?.scrollToIndex({ index: currentIndex + 1 });
     } else {
         router.replace('/(auth)/login')
-     
     }
   };
 
@@ -76,19 +73,22 @@ const OnboardingScreen = () => {
       style={styles.background}
       resizeMode="cover"
     >
-      {/* Gradient overlay */}
       <LinearGradient
-        colors={["#681ABB40", "transparent"]}
-        style={StyleSheet.absoluteFillObject}
+         colors={["#681ABB40", "transparent"]}
+         start={{ x: 0, y: 0 }}
+         end={{ x: 0, y: 1 }}
+         style={StyleSheet.absoluteFillObject}
       />
 
-      {/* Top row: Pagination + Skip */}
       <View style={styles.topRow}>
         <View style={styles.pagination}>
           {onboardingData.map((_, index) => (
-            <View
-              key={index.toString()}
-              style={[
+            <Animated.View
+              key={index.toString() + currentIndex}
+              entering={FadeIn
+                .duration(900)
+                .easing(Easing.out(Easing.exp))}
+              style={[ 
                 styles.dot,
                 currentIndex === index ? styles.activeDot : null,
               ]}
@@ -101,13 +101,29 @@ const OnboardingScreen = () => {
         </Pressable>
       </View>
 
-      {/* Centered text */}
       <View style={styles.textContainer}>
-        <Text style={styles.title}>{item.Title}</Text>
-        <Text style={styles.subTitle}>{item.subTitle}</Text>
+        <Animated.Text
+          key={currentIndex}
+          entering={FadeIn
+            .duration(900)
+            .easing(Easing.out(Easing.exp))}
+          style={styles.title}
+        >
+          {item.Title}
+        </Animated.Text>
+
+        <Animated.Text
+          key={currentIndex + "sub"}
+          entering={FadeIn
+          
+            .duration(1000)
+            .easing(Easing.out(Easing.exp))}
+          style={styles.subTitle}
+        >
+          {item.subTitle}
+        </Animated.Text>
       </View>
 
-      {/* Bottom Button */}
       <View style={styles.bottomContainer}>
         <ImageBackground
           source={require("../../assets/images/backgroundButton.png")}
@@ -115,9 +131,19 @@ const OnboardingScreen = () => {
           resizeMode="stretch"
         >
         <TouchableOpacity onPress={goToNext} style={{flexDirection:'row', gap:5, justifyContent:'center', alignItems:'center'}}>
-          <Text style={styles.bottomButtonText}>Next</Text>
-          <Feather name="arrow-right" size={18} color="white" />
+          
+          <Animated.Text
+            key={currentIndex + "btn"}
+            entering={FadeIn
+            
+              .duration(1000)
+              .easing(Easing.out(Easing.exp))}
+            style={styles.bottomButtonText}
+          >
+            Next
+          </Animated.Text>
 
+          <Feather name="arrow-right" size={18} color="white" />
         </TouchableOpacity>
         </ImageBackground>
       </View>
@@ -148,9 +174,7 @@ const OnboardingScreen = () => {
 export default OnboardingScreen;
 
 const styles = StyleSheet.create({
-  container: {
-    // flex: 1,
-  },
+  container: {},
   background: {
     width: width,
     height: height,
@@ -202,18 +226,16 @@ const styles = StyleSheet.create({
     fontSize: 28,
     color: "#fff",
     fontWeight: "700",
-   
     marginBottom: 10,
   },
   subTitle: {
     fontSize: 14,
     color: "#fff",
     lineHeight: 20,
-   
   },
   bottomContainer: {
     position: "absolute",
-    bottom: 0, // distance from bottom
+    bottom: 0,
     width: "100%",
     alignItems: "center",
   },
