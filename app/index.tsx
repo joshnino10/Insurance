@@ -1,6 +1,6 @@
-import { StyleSheet, Text, View } from 'react-native'
-import React from 'react'
 import OnboardingScreen from '@/Component/OnboardingScreen/OnboardingScreen'
+import React from 'react'
+import { View } from 'react-native'
 
 export default function Index() {
   return (
@@ -10,7 +10,3 @@ export default function Index() {
   )
 }
 
-const styles = StyleSheet.create({
-
-
-})
