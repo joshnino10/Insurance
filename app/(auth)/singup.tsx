@@ -55,7 +55,7 @@ import { SafeAreaView } from "react-native-safe-area-context";
       const phoneRegex = /^[0-9]{10,15}$/;
       if (!value) setPhoneError("Phone number is required");
       else if (!phoneRegex.test(value))
-        setPhoneError("Enter a valid phone number (10-15 digits)");
+        setPhoneError("Enter a valid phone number (10 digits)");
       else setPhoneError("");
     };
   
@@ -175,6 +175,7 @@ import { SafeAreaView } from "react-native-safe-area-context";
                 label="Phone Number"
                 placeholder="+234 800 000 0000"
                 value={phone}
+                maxLength={10}
                 onChangeText={handlePhoneChange}
                 keyboardType="phone-pad"
                 error={phoneError}
@@ -270,14 +271,16 @@ import { SafeAreaView } from "react-native-safe-area-context";
       alignItems: "center",
     },
     welcomeText: {
+      fontFamily: 'PoppinsBold',
       marginTop:10,
       fontSize: 24,
-      fontWeight: "600",
+      fontWeight: "700",
     },
     descText: {
+      fontFamily: 'PoppinsMedium',
       marginTop: 5,
       fontSize: 12,
-      color: "#666",
+      color: "#000000",
     },
     checkboxContainer: {
       flexDirection: "row",
@@ -317,19 +320,22 @@ import { SafeAreaView } from "react-native-safe-area-context";
       marginTop: 30,
     },
     dontHave: {
+      fontFamily: 'PoppinsMedium',
       fontSize: 12,
-      color: "#666",
+      color: "#707070",
     },
     SignUp: {
+      fontFamily: 'PoppinsMedium',
       fontSize: 12,
       color: "#681ABB",
-      fontWeight: "500",
+      fontWeight: "600",
     },
     ruleText: {
+      fontFamily: 'PoppinsRegular',
       fontSize: 12,
-      color: "#999",
+      color: "#B3B3B3",
     },
     ruleValid: {
-      color: "#0A3D62", // highlight when rule satisfied
+      color: "#0A3D62", 
     },
   });

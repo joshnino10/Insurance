@@ -132,7 +132,7 @@ const styles = StyleSheet.create({
     fontFamily: 'PoppinsRegular',
     flex: 1,
     fontSize: 12,
-    color: "#707070",
+  
   },
 
   leftIcon: {
