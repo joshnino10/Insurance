@@ -143,7 +143,7 @@ const OnboardingScreen = () => {
             Next
           </Animated.Text>
 
-          <Feather name="arrow-right" size={18} color="white" />
+          <Feather name="arrow-right" size={20} color="white" />
         </TouchableOpacity>
         </ImageBackground>
       </View>
@@ -212,8 +212,9 @@ const styles = StyleSheet.create({
     padding: 10,
   },
   skipText: {
-    color: "#fff",
-    fontWeight: "600",
+    fontFamily: 'PoppinsBold',
+    color: "#D9D9D9",
+    fontWeight: "700",
     fontSize: 16,
   },
   textContainer: {
@@ -222,13 +223,15 @@ const styles = StyleSheet.create({
     width: "100%",
     paddingHorizontal: 20,
   },
-  title: {
-    fontSize: 28,
-    color: "#fff",
+  title: { 
+    fontFamily: 'PoppinsBold',
+    fontSize: 32,
+    color: "#FFFFFF",
     fontWeight: "700",
     marginBottom: 10,
   },
   subTitle: {
+    fontFamily: 'PoppinsSemiBold',
     fontSize: 14,
     color: "#fff",
     lineHeight: 20,
@@ -246,6 +249,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   bottomButtonText: {
+    fontFamily: 'PoppinsBold',
     color: "#fff",
     fontSize: 18,
     fontWeight: "700",

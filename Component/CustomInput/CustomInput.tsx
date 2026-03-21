@@ -100,10 +100,11 @@ const styles = StyleSheet.create({
   },
 
   label: {
+    fontFamily: 'PoppinsRegular',
     marginBottom: 15,
     fontSize: 14,
-    color: "#333",
-    fontWeight: "500",
+    color: "#707070",
+    fontWeight: "400",
   },
 
   inputContainer: {
@@ -128,9 +129,10 @@ const styles = StyleSheet.create({
   },
 
   input: {
+    fontFamily: 'PoppinsRegular',
     flex: 1,
-    fontSize: 16,
-    color: "#000",
+    fontSize: 12,
+    color: "#707070",
   },
 
   leftIcon: {

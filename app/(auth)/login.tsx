@@ -205,17 +205,23 @@ const styles = StyleSheet.create({
     marginTop: 15,
   },
   welcomeText: {
+    fontFamily: 'PoppinsBold',
     fontSize: 24,
+    fontWeight: '700',
   },
   descText: {
+    fontFamily: 'PoppinsMedium',
     marginTop: 5,
     fontSize: 12,
   },
   forgottenText: {
+    fontFamily: 'PoppinsRegular',
     alignSelf: "flex-end",
     color: "#0A3D62",
-    marginVertical: 10,
+    marginVertical: 5,
+    fontSize:12,
   },
+
   checkboxContainer: {
     flexDirection: "row",
     alignItems: "center",
