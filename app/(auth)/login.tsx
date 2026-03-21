@@ -246,7 +246,9 @@ const styles = StyleSheet.create({
   },
   checkboxText: {
     flex: 1,
+    fontFamily: 'InterRegular',
     fontSize: 10,
+    fontWeight:'400',
     color: "#999797",
   },
   submitBtn: {
@@ -262,8 +264,9 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
   },
   spanText: {
+    fontFamily: 'InterSemiBold',
     color: "#681ABB",
-    fontWeight: "500",
+    fontWeight: "600",
   },
 
   orContainer: {
@@ -290,6 +293,8 @@ const styles = StyleSheet.create({
     marginTop:30,
   },
   dontHave: {
+    fontFamily: 'PoppoinsMedium',
+    color: '#707070',
     fontSize: 12,
   },
 
@@ -313,7 +318,8 @@ const styles = StyleSheet.create({
   },
 
   socialText: {
-    fontSize: 15,
+    fontFamily: 'PoppinsMedium',
+    fontSize: 14,
     color: "#707070",
     fontWeight: "500",
     textAlignVertical: "center", // works on Android
@@ -321,6 +327,7 @@ const styles = StyleSheet.create({
   },
 
   SignUp: {
+    fontFamily: 'PoppoinsMedium',
     fontSize: 12,
     color: "#681ABB",
     fontWeight: "500",

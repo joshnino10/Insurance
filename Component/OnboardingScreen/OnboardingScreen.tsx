@@ -42,7 +42,7 @@ const OnboardingScreen = () => {
     },
     {
       id: "4",
-      BackgroundImage: require("../../assets/images/onboarding image 3.jpg"),
+      BackgroundImage: require("../../assets/images/onboarding image 4.jpg"),
       Title: "Emergency \nReady",
       subTitle:
         "Instant claims and 24/7 access to guidance. We are here to support you when life happens.",

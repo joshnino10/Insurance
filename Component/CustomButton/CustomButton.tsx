@@ -51,7 +51,9 @@ const styles = StyleSheet.create({
     elevation:4
   },
   text: {
+    fontFamily: 'PoppinsMedium',
     fontSize: 16,
-    fontWeight: 'bold',
+    color:'#FFFFFF',
+    fontWeight: '600',
   },
 })

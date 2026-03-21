@@ -139,7 +139,7 @@ import { SafeAreaView } from "react-native-safe-area-context";
       <SafeAreaView style={styles.SafeArea}>
         <StatusBar barStyle="dark-content" backgroundColor="white" />
         <View style={styles.page}>
-          <ScrollView contentContainerStyle={{ paddingBottom: 50 }}>
+          <ScrollView showsHorizontalScrollIndicator={false} contentContainerStyle={{ paddingBottom: 50 }}>
             <View style={styles.container}>
               <Text style={styles.welcomeText}>Create an Account</Text>
               <Text style={styles.descText}>
