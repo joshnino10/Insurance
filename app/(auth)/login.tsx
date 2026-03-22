@@ -187,7 +187,7 @@ export default function Login() {
           <View style={{ marginVertical: 4, alignSelf: "center" }}>
             <TouchableOpacity style={styles.socialButton}>
               <Image
-                source={require("../../assets/images/app logo.png")}
+                source={require("../../assets/images/apple .png")}
                 style={styles.socialIcon}
                 resizeMode="contain"
               />
