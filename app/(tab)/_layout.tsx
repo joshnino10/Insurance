@@ -10,30 +10,24 @@ export default function TabLayout() {
         tabBarActiveTintColor: "#681ABB",
         tabBarInactiveTintColor: "#707070",
 
-        tabBarStyle:{
-            position: 'absolute',
-            height: Platform.OS === 'ios'? 75:70,
-            alignItems:'center',
-            backgroundColor:'#FFFFFF'
-        
+        tabBarStyle: {
+          position: "absolute",
+          height: Platform.OS === "ios" ? 75 : 70,
+          alignItems: "center",
+          backgroundColor: "#FFFFFF",
         },
 
         tabBarIconStyle: {
-            justifyContent: 'center',
-            alignItems: 'center',
-            marginBottom:2
-        
+          justifyContent: "center",
+          alignItems: "center",
+          marginBottom: 2,
         },
 
-        tabBarLabelStyle:{
-            fontFamily:'PoppinsSemiBold',
-            fontSize:10,
-            fontWeight:'600'
-
-        }
-
-
-
+        tabBarLabelStyle: {
+          fontFamily: "PoppinsSemiBold",
+          fontSize: 10,
+          fontWeight: "600",
+        },
       }}
     >
       <Tabs.Screen
@@ -72,7 +66,7 @@ export default function TabLayout() {
       <Tabs.Screen
         name="chat"
         options={{
-            tabBarLabel: ()=> null,
+          tabBarLabel: () => null,
           tabBarIcon: () => (
             <Image
               source={require("../../assets/images/Chat icon .png")}
@@ -82,36 +76,38 @@ export default function TabLayout() {
         }}
       />
 
-      <Tabs.Screen name="plans"
-      options={{
-        title:'Plans',
-        tabBarIcon:({focused})=>(
+      <Tabs.Screen
+        name="plans"
+        options={{
+          title: "Plans",
+          tabBarIcon: ({ focused }) => (
             <Image
               source={
-                focused?
-                require('../../assets/images/plans icon active.png')
-                :require('../../assets/images/plans icon inactive.png')
+                focused
+                  ? require("../../assets/images/plans icon active.png")
+                  : require("../../assets/images/plans icon inactive.png")
               }
               style={styles.icon}
             />
-
-        )
-      }}
-       />
-      <Tabs.Screen name="profile"
-      options={{
-        title: 'Profile',
-        tabBarIcon:({focused})=>(
-            <Image 
+          ),
+        }}
+      />
+      <Tabs.Screen
+        name="profile"
+        options={{
+          title: "Profile",
+          tabBarIcon: ({ focused }) => (
+            <Image
               source={
-                focused? 
-                require('../../assets/images/profile icon active.png')
-                :require('../../assets/images/profile icon inactive.png')
+                focused
+                  ? require("../../assets/images/profile icon active.png")
+                  : require("../../assets/images/profile icon inactive.png")
               }
               style={styles.icon}
             />
-        )
-      }} />
+          ),
+        }}
+      />
     </Tabs>
   );
 }
