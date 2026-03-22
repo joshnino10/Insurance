@@ -3,15 +3,16 @@ import CustomInput from "@/Component/CustomInput/CustomInput";
 import { useRouter } from "expo-router";
 import React, { useState } from "react";
 import {
-    Image,
-    Platform,
-    Pressable,
-    ScrollView,
-    StatusBar,
-    StyleSheet,
-    Text,
-    TouchableOpacity,
-    View,
+  Image,
+  Platform,
+  Pressable,
+  ScrollView,
+  StatusBar,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+  ActivityIndicator
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
@@ -20,15 +21,16 @@ export default function Login() {
   const [password, setPassword] = useState<string>("");
   const [emailError, setEmailError] = useState<string>("");
   const [passwordError, setPasswordError] = useState<string>("");
+  const [loading, setLoading] = useState(false);
 
   // Checkbox state
   const [agreed, setAgreed] = useState<boolean>(false);
 
-   const router = useRouter()
-  
-      const goToSignUp = ()=>{
-          router.push('/(auth)/singup')
-      }
+  const router = useRouter();
+
+  const goToSignUp = () => {
+    router.push("/(auth)/singup");
+  };
 
   const validateEmail = (value: string) => {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -55,12 +57,28 @@ export default function Login() {
     validatePassword(text);
   };
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
+    // Run validations
     validateEmail(email);
     validatePassword(password);
+  
+   
     if (!emailError && !passwordError && email && password && agreed) {
-      console.log("Login Data:", { email, password });
-      // 👉 Connect to API here
+      try {
+        setLoading(true); // start spinner
+  
+      
+        await new Promise((resolve) => setTimeout(resolve, 2500));
+  
+        console.log("Login Data:", { email, password });
+  
+        // Navigate to Home screen
+        router.replace("/(tab)/home");
+      } catch (e) {
+        alert("Login failed. Please try again.");
+      } finally {
+        setLoading(false); // stop spinner
+      }
     } else if (!agreed) {
       alert("You must agree to the terms to continue.");
     }
@@ -68,7 +86,7 @@ export default function Login() {
 
   return (
     <SafeAreaView style={styles.SafeArea}>
-      <StatusBar barStyle='dark-content' backgroundColor='white'/>
+      <StatusBar barStyle="dark-content" backgroundColor="white" />
       <View style={styles.page}>
         <ScrollView contentContainerStyle={{ paddingBottom: 50 }}>
           <View style={styles.container}>
@@ -125,11 +143,17 @@ export default function Login() {
               </Text>
             </Pressable>
 
-            <CustomButton
-              title="Login"
-              textColor="#FFFFFF"
-              onPress={handleSubmit}
-            />
+            <View>
+              {loading ? (
+                <ActivityIndicator size="large" color="#0A3D62" />
+              ) : (
+                <CustomButton
+                  title="Login"
+                  textColor="#FFFFFF"
+                  onPress={handleSubmit}
+                />
+              )}
+            </View>
 
             <View style={styles.orContainer}>
               <View style={styles.divider} />
@@ -205,21 +229,21 @@ const styles = StyleSheet.create({
     marginTop: 15,
   },
   welcomeText: {
-    fontFamily: 'PoppinsBold',
+    fontFamily: "PoppinsBold",
     fontSize: 24,
-    fontWeight: '700',
+    fontWeight: "700",
   },
   descText: {
-    fontFamily: 'PoppinsMedium',
+    fontFamily: "PoppinsMedium",
     marginTop: 5,
     fontSize: 12,
   },
   forgottenText: {
-    fontFamily: 'PoppinsRegular',
+    fontFamily: "PoppinsRegular",
     alignSelf: "flex-end",
     color: "#0A3D62",
     marginVertical: 5,
-    fontSize:12,
+    fontSize: 12,
   },
 
   checkboxContainer: {
@@ -246,9 +270,9 @@ const styles = StyleSheet.create({
   },
   checkboxText: {
     flex: 1,
-    fontFamily: 'InterRegular',
+    fontFamily: "InterRegular",
     fontSize: 10,
-    fontWeight:'400',
+    fontWeight: "400",
     color: "#999797",
   },
   submitBtn: {
@@ -264,7 +288,7 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
   },
   spanText: {
-    fontFamily: 'InterSemiBold',
+    fontFamily: "InterSemiBold",
     color: "#681ABB",
     fontWeight: "600",
   },
@@ -290,11 +314,11 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignSelf: "center",
     gap: 5,
-    marginTop:30,
+    marginTop: 30,
   },
   dontHave: {
-    fontFamily: 'PoppoinsMedium',
-    color: '#707070',
+    fontFamily: "PoppoinsMedium",
+    color: "#707070",
     fontSize: 12,
   },
 
@@ -318,7 +342,7 @@ const styles = StyleSheet.create({
   },
 
   socialText: {
-    fontFamily: 'PoppinsMedium',
+    fontFamily: "PoppinsMedium",
     fontSize: 14,
     color: "#707070",
     fontWeight: "500",
@@ -327,7 +351,7 @@ const styles = StyleSheet.create({
   },
 
   SignUp: {
-    fontFamily: 'PoppoinsMedium',
+    fontFamily: "PoppoinsMedium",
     fontSize: 12,
     color: "#681ABB",
     fontWeight: "500",
