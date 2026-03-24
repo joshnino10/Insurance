@@ -85,8 +85,9 @@ const styles = StyleSheet.create({
   },
 
   Amount: {
-    fontFamily: 'PoppinsBold',
+    fontFamily: 'MontserratBold',
     fontSize: 24,
+    fontWeight:'700',
     color: '#FFFFFF'
   },
 

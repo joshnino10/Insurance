@@ -2,6 +2,7 @@ import { StyleSheet, Text, View, Image, TouchableOpacity } from "react-native";
 import React from "react";
 
 export default function CurrentCoverage() {
+
   const currentCoverage = [
     {
       id: "1",
@@ -64,8 +65,10 @@ const styles = StyleSheet.create({
     fontWeight: "600",
     color: "#000000",
   },
+
+
   Card: {
-    marginTop:14,
+    marginTop:15,
     backgroundColor: "#FFFFFF",
     paddingVertical: 20,
     paddingHorizontal: 15,
@@ -79,7 +82,6 @@ const styles = StyleSheet.create({
     shadowRadius:4,
 
     elevation:4
-
 
   }, 
 
