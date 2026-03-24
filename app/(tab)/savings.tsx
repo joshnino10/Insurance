@@ -1,4 +1,7 @@
+import Actions from "@/Component/SavingScreen/Actions";
 import SavingsHeader from "@/Component/SavingScreen/SavingsHeader";
+import SavingTips from "@/Component/SavingScreen/SavingTips";
+import TotalBalance from "@/Component/SavingScreen/TotalBalance";
 import React from "react";
 import { StyleSheet,  Platform, ScrollView } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
@@ -12,6 +15,9 @@ export default function Savings() {
       >
 
         <SavingsHeader/>
+        <TotalBalance/>
+        <Actions/>
+        <SavingTips/>
 
 
 

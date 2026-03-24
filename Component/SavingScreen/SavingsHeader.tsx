@@ -1,5 +1,5 @@
 import React from "react";
-import { ImageBackground, Pressable, StyleSheet, Text, View } from "react-native";
+import { Pressable, StyleSheet, Text, View } from "react-native";
 import Feather from "@expo/vector-icons/Feather";
 import { useRouter } from "expo-router";
 
@@ -18,13 +18,6 @@ export default function SavingsHeader() {
         </Pressable>
         <Text style={styles.savingPlan}>Savings Plans</Text>
       </View>
-
-     
-
-
-
-
-
     </View>
   );
 }
