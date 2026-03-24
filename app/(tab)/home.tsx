@@ -10,7 +10,7 @@ import { SafeAreaView } from 'react-native-safe-area-context'
 export default function Home() {
   return (
     <SafeAreaView style={styles.SafeArea}>
-        <ScrollView contentContainerStyle={{ paddingBottom: 80 }} >
+        <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={{ paddingBottom: 80 }} >
             <HomeHeader/>
             <HealthBalance/>
             <CurrentCoverage/>
