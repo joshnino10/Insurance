@@ -1,4 +1,5 @@
 import Actions from "@/Component/SavingScreen/Actions";
+import ActiveGoals from "@/Component/SavingScreen/ActiveGoals";
 import SavingsHeader from "@/Component/SavingScreen/SavingsHeader";
 import SavingTips from "@/Component/SavingScreen/SavingTips";
 import TotalBalance from "@/Component/SavingScreen/TotalBalance";
@@ -16,6 +17,7 @@ export default function Savings() {
 
         <SavingsHeader/>
         <TotalBalance/>
+        <ActiveGoals/>
         <Actions/>
         <SavingTips/>
 
