@@ -47,7 +47,7 @@ import {
   
   const styles = StyleSheet.create({
     Container: {
-      marginTop: 40,
+      marginTop: 25,
       paddingHorizontal: 16,
     },
   
@@ -55,10 +55,11 @@ import {
       flexDirection: "row",
       justifyContent: "space-between",
       alignItems: "center",
+      marginBottom:15
     },
   
     recently: {
-      fontFamily: "PoppinsBold", // fixed font name
+      fontFamily: "PoppinsBold", 
       fontSize: 12,
       color: "#000000",
     },
@@ -70,7 +71,8 @@ import {
     },
   
     Card: {
-      marginTop: 12,
+    
+      marginVertical: 4,
       backgroundColor: "#FFFFFF",
       padding: 20,
       borderRadius: 15,
