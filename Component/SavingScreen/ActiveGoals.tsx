@@ -1,5 +1,5 @@
 import React from 'react'
-import { StyleSheet, Text, View } from 'react-native'
+import { StyleSheet,  View } from 'react-native'
 import ActiveGoalsDetails from '../ActiveGoals/ActiveGoalsDetails'
 
 export default function ActiveGoals() {
