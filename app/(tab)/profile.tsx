@@ -1,21 +1,23 @@
+import PaymentMethod from "@/Component/ProfileScreen/PaymentMethod";
+import Personalnfo from "@/Component/ProfileScreen/Personalnfo";
 import ProfileHeader from "@/Component/ProfileScreen/ProfileHeader";
+import Security from "@/Component/ProfileScreen/Security";
 import React from "react";
-import { Platform, ScrollView, StyleSheet } from "react-native";
+import { Platform, ScrollView, StatusBar, StyleSheet } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
 export default function Profile() {
   return (
     <SafeAreaView style={styles.SafeArea}>
+      <StatusBar barStyle="dark-content" backgroundColor="white"  />
       <ScrollView
         showsVerticalScrollIndicator={false}
         contentContainerStyle={{ paddingBottom: 80 }}
       >
-
         <ProfileHeader/>
-
-
-
-
+        <Personalnfo/>
+        <Security/>
+        <PaymentMethod/>
       </ScrollView>
     </SafeAreaView>
   );

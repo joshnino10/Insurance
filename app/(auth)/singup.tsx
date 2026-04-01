@@ -15,15 +15,12 @@ import { SafeAreaView } from "react-native-safe-area-context";
   
   export default function Signup() {
     const router = useRouter();
-  
-    // Form states
+    
     const [fullName, setFullName] = useState("");
     const [email, setEmail] = useState("");
     const [phone, setPhone] = useState("");
     const [password, setPassword] = useState("");
     const [confirmPassword, setConfirmPassword] = useState("");
-  
-    
     const [fullNameError, setFullNameError] = useState("");
     const [emailError, setEmailError] = useState("");
     const [phoneError, setPhoneError] = useState("");

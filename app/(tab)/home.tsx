@@ -4,13 +4,14 @@ import HomeHeader from '@/Component/HomeScreen/HomeHeader'
 import QuickAction from '@/Component/HomeScreen/QuickAction'
 import RecentlyActivity from '@/Component/HomeScreen/RecentlyActivity'
 import React from 'react'
-import { Platform, ScrollView, StyleSheet, } from 'react-native'
+import { Platform, ScrollView, StatusBar, StyleSheet, } from 'react-native'
 import { SafeAreaView } from 'react-native-safe-area-context'
 
 export default function Home() {
   return (
     <SafeAreaView style={styles.SafeArea}>
         <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={{ paddingBottom: 80 }} >
+          <StatusBar barStyle="dark-content" backgroundColor="white"/>
             <HomeHeader/>
             <HealthBalance/>
             <CurrentCoverage/>
