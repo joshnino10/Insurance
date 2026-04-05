@@ -11,7 +11,6 @@ import {
   Image,
 } from "react-native";
 
-
 const chatFlow = {
   start: {
     bot: "Hi! I'm HealthBot. I can help you understand your insurance or give health tips. How can I help today?",
@@ -24,6 +23,7 @@ const chatFlow = {
     bot: "It’s recommended to save at least 3–6 months of expenses.",
     options: [{ text: "Back", next: "start" }],
   },
+
   insurance: {
     bot: "Sure 👍 What would you like to know about your health insurance?",
     options: [
@@ -31,10 +31,12 @@ const chatFlow = {
       { text: "How to claim?", next: "claim" },
     ],
   },
+
   covered: {
     bot: "Your insurance typically covers hospital visits, medications, and checkups.",
     options: [{ text: "Back", next: "insurance" }],
   },
+
   claim: {
     bot: "To claim, submit your hospital bills via your provider’s app or office.",
     options: [{ text: "Start again", next: "start" }],
@@ -54,7 +56,6 @@ export default function Healthbot() {
     if (!text.trim()) return;
 
     const stepData = chatFlow[currentStep];
-
     const matchedOption = stepData.options.find((opt) => opt.text === text);
 
     let nextBotMessage =
@@ -115,29 +116,36 @@ export default function Healthbot() {
                   flexDirection: "row",
                   justifyContent: isUser ? "flex-end" : "flex-start",
                   marginBottom: 10,
+                 
                 }}
               >
-                {/* Bot Avatar (outside bubble) */}
+                {/* Bot Avatar */}
                 {!isUser && (
                   <Image
-                    style={{ width: 30, height: 30, marginRight: 6, }}
+                    style={{ width: 30, height: 30, marginRight: 6 }}
                     source={require("../../assets/images/bot icon.png")}
                   />
                 )}
 
-                {/* Bubble (UNCHANGED styles) */}
+                {/* Message Bubble */}
                 <View
                   style={[
                     styles.messageBubble,
                     isUser ? styles.userBubble : styles.botBubble,
                   ]}
                 >
-                  <Text
-                    style={isUser ? styles.userText : styles.botText}
-                  >
+                  <Text style={isUser ? styles.userText : styles.botText}>
                     {item.text}
                   </Text>
                 </View>
+
+                {/* User Avatar */}
+                {isUser && (
+                  <Image
+                    style={{ width: 30, height: 30, marginLeft: 6 }}
+                    source={require("../../assets/images/user message icon.png")}
+                  />
+                )}
               </View>
             );
           }}
@@ -180,10 +188,17 @@ export default function Healthbot() {
               ]}
               onPress={() => sendMessage(input)}
             >
-              <Image
-                style={{ width: 24, height: 24 }}
-                source={require("../../assets/images/telegram.png")}
-              />
+              {input.trim() ? (
+                <Image
+                  style={{ width: 40, height: 40 }}
+                  source={require("../../assets/images/active send.png")}
+                />
+              ) : (
+                <Image
+                  style={{ width: 40, height: 40 }}
+                  source={require("../../assets/images/disable send.png")}
+                />
+              )}
             </TouchableOpacity>
           </View>
         </View>
@@ -218,7 +233,7 @@ const styles = StyleSheet.create({
   userBubble: {
     backgroundColor: "#29A251",
     alignSelf: "flex-end",
-    height:62
+    height: 62,
   },
 
   botText: {
@@ -273,7 +288,6 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     borderRadius: 2000,
-    backgroundColor: "#B3B3B3",
   },
 
   disabledButton: {
