@@ -130,6 +130,7 @@ export default function Healthbot() {
                 {/* Message Bubble */}
                 <View
                   style={[
+                    styles.userMessage,
                     styles.messageBubble,
                     isUser ? styles.userBubble : styles.botBubble,
                   ]}
@@ -159,10 +160,12 @@ export default function Healthbot() {
             keyExtractor={(item, index) => index.toString()}
             showsHorizontalScrollIndicator={false}
             renderItem={({ item }) => (
+                 
               <TouchableOpacity
                 style={styles.option}
                 onPress={() => handleOptionPress(item)}
               >
+                <Image style={{width:15, height:16}} source={require('../../assets/images/option text icon.png')}/>
                 <Text style={styles.optionText}>{item.text}</Text>
               </TouchableOpacity>
             )}
@@ -220,9 +223,15 @@ const styles = StyleSheet.create({
 
   messageBubble: {
     padding: 14,
-    borderRadius: 16,
+    borderTopRightRadius:10,
+    borderBottomLeftRadius:10,
+    borderBottomRightRadius:10,
     marginBottom: 10,
-    maxWidth: "80%",
+    shadowColor:'#00000',
+    shadowOffset:{width:0, height:5},
+    shadowOpacity:0.2,
+    shadowRadius:4,
+    maxWidth: "70%",
   },
 
   botBubble: {
@@ -231,16 +240,28 @@ const styles = StyleSheet.create({
   },
 
   userBubble: {
+    borderTopRightRadius:0,
+    borderTopLeftRadius:10,
     backgroundColor: "#29A251",
     alignSelf: "flex-end",
-    height: 62,
+  
   },
 
   botText: {
+    fontFamily:'PoppinsRegular',
+    fontSize:12,
+    lineHeight:25,
     color: "#333",
   },
 
+  userMessage:{
+
+  },
+
   userText: {
+    fontFamily:'PoppinsRegular',
+    fontSize:12,
+    lineHeight:25,
     color: "#fff",
   },
 
@@ -250,6 +271,11 @@ const styles = StyleSheet.create({
   },
 
   option: {
+    flexDirection:'row',
+    alignItems:'center',
+    gap:4,
+    borderWidth:1,
+    borderColor:'#AE8FCF',
     backgroundColor: "#E9DFFF",
     paddingVertical: 10,
     paddingHorizontal: 16,
@@ -258,9 +284,10 @@ const styles = StyleSheet.create({
   },
 
   optionText: {
+    fontFamily:"PoppinsRegular",
     color: "#681ABB",
-    fontSize: 12,
-    fontWeight: "500",
+    fontSize: 10,
+    fontWeight: "400",
   },
 
   inputContainer: {
