@@ -11,7 +11,27 @@ import {
   Image,
 } from "react-native";
 
-const chatFlow = {
+type Option = {
+  text: string;
+  next?: string;
+};
+
+type Step = {
+  bot: string;
+  options: Option[];
+};
+
+type ChatFlow = {
+  [key: string]: Step;
+};
+
+type Message = {
+  id: string;
+  type: "bot" | "user";
+  text: string;
+};
+
+const chatFlow: ChatFlow = {
   start: {
     bot: "Hi! I'm HealthBot. I can help you understand your insurance or give health tips. How can I help today?",
     options: [
@@ -25,7 +45,6 @@ const chatFlow = {
     bot: "It’s recommended to save at least 3–6 months of expenses.",
     options: [{ text: "Back", next: "start" }],
   },
-
   insurance: {
     bot: "Sure 👍 What would you like to know about your health insurance?",
     options: [
@@ -33,12 +52,10 @@ const chatFlow = {
       { text: "How to claim?", next: "claim" },
     ],
   },
-
   covered: {
     bot: "Your insurance typically covers hospital visits, medications, and checkups.",
     options: [{ text: "Back", next: "insurance" }],
   },
-
   claim: {
     bot: "To claim, submit your hospital bills via your provider’s app or office.",
     options: [{ text: "Start again", next: "start" }],
@@ -46,20 +63,23 @@ const chatFlow = {
 };
 
 export default function Healthbot() {
-  const flatListRef = useRef(null);
-  const inputRef = useRef(null);
+  const flatListRef = useRef<FlatList<Message>>(null);
+  const inputRef = useRef<TextInput>(null);
 
-  const [messages, setMessages] = useState([
+  const [messages, setMessages] = useState<Message[]>([
     { id: "1", type: "bot", text: chatFlow.start.bot },
   ]);
-  const [currentStep, setCurrentStep] = useState("start");
-  const [input, setInput] = useState("");
 
-  const sendMessage = (text) => {
+  const [currentStep, setCurrentStep] = useState<string>("start");
+  const [input, setInput] = useState<string>("");
+
+  const sendMessage = (text: string) => {
     if (!text.trim()) return;
 
     const stepData = chatFlow[currentStep];
-    const matchedOption = stepData.options.find((opt) => opt.text === text);
+    const matchedOption = stepData.options.find(
+      (opt) => opt.text === text
+    );
 
     let nextBotMessage =
       "I understand 👍. You can also use the options above.";
@@ -87,10 +107,9 @@ export default function Healthbot() {
     setInput("");
   };
 
-  // ✅ FIXED HERE
-  const handleOptionPress = (option) => {
+  const handleOptionPress = (option: Option) => {
     setInput(option.text);
-    inputRef.current?.focus(); // optional but smooth UX
+    inputRef.current?.focus();
   };
 
   useEffect(() => {
@@ -123,7 +142,6 @@ export default function Healthbot() {
                   marginBottom: 10,
                 }}
               >
-                {/* Bot Avatar */}
                 {!isUser && (
                   <Image
                     style={{ width: 30, height: 30, marginRight: 6 }}
@@ -131,7 +149,6 @@ export default function Healthbot() {
                   />
                 )}
 
-                {/* Message Bubble */}
                 <View
                   style={[
                     styles.userMessage,
@@ -144,7 +161,6 @@ export default function Healthbot() {
                   </Text>
                 </View>
 
-                {/* User Avatar */}
                 {isUser && (
                   <Image
                     style={{ width: 30, height: 30, marginLeft: 6 }}
@@ -161,7 +177,7 @@ export default function Healthbot() {
           <FlatList
             horizontal
             data={chatFlow[currentStep].options}
-            keyExtractor={(item, index) => index.toString()}
+            keyExtractor={(_, index) => index.toString()}
             showsHorizontalScrollIndicator={false}
             renderItem={({ item }) => (
               <TouchableOpacity
@@ -182,7 +198,7 @@ export default function Healthbot() {
         <View style={{ marginBottom: 100, backgroundColor: "white" }}>
           <View style={styles.inputContainer}>
             <TextInput
-              ref={inputRef} // ✅ added ref
+              ref={inputRef}
               style={styles.input}
               placeholder="Ask about health or insurance..."
               value={input}
@@ -222,12 +238,10 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: "#D9D9D900",
   },
-
   messagesContainer: {
     padding: 16,
     paddingBottom: 8,
   },
-
   messageBubble: {
     padding: 14,
     borderTopRightRadius: 10,
@@ -240,40 +254,33 @@ const styles = StyleSheet.create({
     shadowRadius: 4,
     maxWidth: "70%",
   },
-
   botBubble: {
     backgroundColor: "#FFFFFF",
     alignSelf: "flex-start",
   },
-
   userBubble: {
     borderTopRightRadius: 0,
     borderTopLeftRadius: 10,
     backgroundColor: "#29A251",
     alignSelf: "flex-end",
   },
-
   botText: {
     fontFamily: "PoppinsRegular",
     fontSize: 12,
     lineHeight: 25,
     color: "#333",
   },
-
   userMessage: {},
-
   userText: {
     fontFamily: "PoppinsRegular",
     fontSize: 12,
     lineHeight: 25,
     color: "#fff",
   },
-
   optionsContainer: {
     paddingVertical: 10,
     paddingLeft: 12,
   },
-
   option: {
     flexDirection: "row",
     alignItems: "center",
@@ -286,14 +293,12 @@ const styles = StyleSheet.create({
     borderRadius: 25,
     marginRight: 10,
   },
-
   optionText: {
     fontFamily: "PoppinsRegular",
     color: "#681ABB",
     fontSize: 10,
     fontWeight: "400",
   },
-
   inputContainer: {
     flexDirection: "row",
     alignItems: "center",
@@ -305,13 +310,11 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: "#eee",
   },
-
   input: {
     flex: 1,
     fontSize: 14,
     paddingVertical: 10,
   },
-
   sendButton: {
     marginLeft: 8,
     height: 38,
@@ -320,7 +323,6 @@ const styles = StyleSheet.create({
     alignItems: "center",
     borderRadius: 2000,
   },
-
   disabledButton: {
     opacity: 0.4,
   },
