@@ -1,8 +1,10 @@
-import { Tabs } from "expo-router";
+import BotHeader from "@/Component/BotScreen/BotHeader";
+import { Tabs, useRouter } from "expo-router";
 import React from "react";
-import { StyleSheet, Image, Platform } from "react-native";
+import { StyleSheet, Image, Platform, View } from "react-native";
 
 export default function TabLayout() {
+  const router = useRouter()
   return (
     <Tabs
       screenOptions={{
@@ -34,6 +36,7 @@ export default function TabLayout() {
         name="home"
         options={{
           title: "Home",
+          header: () => <BotHeader />,
           tabBarIcon: ({ focused }) => (
             <Image
               source={
@@ -63,18 +66,25 @@ export default function TabLayout() {
         }}
       />
 
-      <Tabs.Screen
-        name="chat"
-        options={{
-          tabBarLabel: () => null,
-          tabBarIcon: () => (
-            <Image
-              source={require("../../assets/images/Chat icon .png")}
-              style={styles.chatIcon}
-            />
-          ),
-        }}
-      />
+
+<Tabs.Screen
+  name="chat"
+  options={{
+    headerShown:true,
+    header:()=><BotHeader/>,
+    tabBarLabel: () => null,
+    tabBarIcon: () => (
+      <View >
+        <Image
+          source={require("../../assets/images/Chat icon .png")}
+          style={styles.chatIcon}
+        />
+      </View>
+    ),
+  }}
+
+
+/>
 
       <Tabs.Screen
         name="plans"

@@ -25,6 +25,7 @@ import {
   Inter_800ExtraBold,
 } from "@expo-google-fonts/inter";
 import { useEffect } from "react";
+import BotHeader from "@/Component/BotScreen/BotHeader";
 
 SplashScreen.preventAutoHideAsync();
 
@@ -57,7 +58,10 @@ export default function RootLayout() {
 
   return (
     <Stack screenOptions={{ headerShown: false }}>
-      <Stack.Screen name="index" />
+      <Stack.Screen name="index"/>
+
+
+     
     </Stack>
   );
 }
