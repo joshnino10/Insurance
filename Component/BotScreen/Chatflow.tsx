@@ -9,11 +9,12 @@ import {
   KeyboardAvoidingView,
   Platform,
   Image,
+  ActivityIndicator,
 } from "react-native";
 
 type Option = {
   text: string;
-  next?: string;
+  reply?: string;
 };
 
 type Step = {
@@ -27,7 +28,7 @@ type ChatFlow = {
 
 type Message = {
   id: string;
-  type: "bot" | "user";
+  type: "bot" | "user" | "thinking";
   text: string;
 };
 
@@ -35,30 +36,23 @@ const chatFlow: ChatFlow = {
   start: {
     bot: "Hi! I'm HealthBot. I can help you understand your insurance or give health tips. How can I help today?",
     options: [
-      { text: "How much should I save for emergencies?" },
-      { text: "Does Silver Care cover dental?" },
-      { text: "What is a 'deductible'?" },
-      { text: "Tips for chip healthy eating?" },
+      {
+        text: "How much should I save for emergencies?",
+        reply: "It’s recommended to save at least 3–6 months of expenses.",
+      },
+      {
+        text: "Does Silver Care cover dental?",
+        reply: "Yes 👍 Some plans cover dental depending on your provider.",
+      },
+      {
+        text: "What is a 'deductible'?",
+        reply: "A deductible is the amount you pay before insurance starts covering costs.",
+      },
+      {
+        text: "Tips for chip healthy eating?",
+        reply: "Eat more fruits, reduce sugar, and stay hydrated daily 🍎",
+      },
     ],
-  },
-  savings: {
-    bot: "It’s recommended to save at least 3–6 months of expenses.",
-    options: [{ text: "Back", next: "start" }],
-  },
-  insurance: {
-    bot: "Sure 👍 What would you like to know about your health insurance?",
-    options: [
-      { text: "What is covered?", next: "covered" },
-      { text: "How to claim?", next: "claim" },
-    ],
-  },
-  covered: {
-    bot: "Your insurance typically covers hospital visits, medications, and checkups.",
-    options: [{ text: "Back", next: "insurance" }],
-  },
-  claim: {
-    bot: "To claim, submit your hospital bills via your provider’s app or office.",
-    options: [{ text: "Start again", next: "start" }],
   },
 };
 
@@ -69,27 +63,19 @@ export default function Healthbot() {
   const [messages, setMessages] = useState<Message[]>([
     { id: "1", type: "bot", text: chatFlow.start.bot },
   ]);
-
-  const [currentStep, setCurrentStep] = useState<string>("start");
+  const [currentStep] = useState<string>("start");
   const [input, setInput] = useState<string>("");
 
   const sendMessage = (text: string) => {
     if (!text.trim()) return;
 
     const stepData = chatFlow[currentStep];
-    const matchedOption = stepData.options.find(
-      (opt) => opt.text === text
-    );
+    const matchedOption = stepData.options.find((opt) => opt.text === text);
 
-    let nextBotMessage =
-      "I understand 👍. You can also use the options above.";
+    const nextBotMessage =
+      matchedOption?.reply || "I understand 👍. You can also use the options above.";
 
-    if (matchedOption && matchedOption.next) {
-      const nextStep = matchedOption.next;
-      nextBotMessage = chatFlow[nextStep].bot;
-      setCurrentStep(nextStep);
-    }
-
+    // Add user message + placeholder thinking message
     setMessages((prev) => [
       ...prev,
       {
@@ -98,13 +84,22 @@ export default function Healthbot() {
         text,
       },
       {
-        id: Date.now().toString() + "_bot",
-        type: "bot",
-        text: nextBotMessage,
+        id: "thinking_" + Date.now().toString(),
+        type: "thinking",
+        text: "Bot is thinking...",
       },
     ]);
 
     setInput("");
+
+    // Simulate delay for bot response
+    setTimeout(() => {
+      setMessages((prev) =>
+        prev.map((msg) =>
+          msg.type === "thinking" ? { ...msg, type: "bot", text: nextBotMessage } : msg
+        )
+      );
+    }, 1500); // 1.5s delay
   };
 
   const handleOptionPress = (option: Option) => {
@@ -133,6 +128,7 @@ export default function Healthbot() {
           }
           renderItem={({ item }) => {
             const isUser = item.type === "user";
+            const isThinking = item.type === "thinking";
 
             return (
               <View
@@ -142,6 +138,7 @@ export default function Healthbot() {
                   marginBottom: 10,
                 }}
               >
+                {/* Bot avatar */}
                 {!isUser && (
                   <Image
                     style={{ width: 30, height: 30, marginRight: 6 }}
@@ -156,11 +153,19 @@ export default function Healthbot() {
                     isUser ? styles.userBubble : styles.botBubble,
                   ]}
                 >
-                  <Text style={isUser ? styles.userText : styles.botText}>
-                    {item.text}
-                  </Text>
+                  {isThinking ? (
+                    <View style={{ flexDirection: "row", alignItems: "center", gap: 6 }}>
+                      <ActivityIndicator size="small" color="#681ABB" />
+                      <Text style={styles.botText}>Thinking......</Text>
+                    </View>
+                  ) : (
+                    <Text style={isUser ? styles.userText : styles.botText}>
+                      {item.text}
+                    </Text>
+                  )}
                 </View>
 
+                {/* User avatar */}
                 {isUser && (
                   <Image
                     style={{ width: 30, height: 30, marginLeft: 6 }}

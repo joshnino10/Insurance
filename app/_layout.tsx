@@ -25,7 +25,7 @@ import {
   Inter_800ExtraBold,
 } from "@expo-google-fonts/inter";
 import { useEffect } from "react";
-import BotHeader from "@/Component/BotScreen/BotHeader";
+
 
 SplashScreen.preventAutoHideAsync();
 
