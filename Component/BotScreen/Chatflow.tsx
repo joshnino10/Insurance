@@ -17,6 +17,8 @@ const chatFlow = {
     options: [
       { text: "How much should I save for emergencies?" },
       { text: "Does Silver Care cover dental?" },
+      { text: "What is a 'deductible'?" },
+      { text: "Tips for chip healthy eating?" },
     ],
   },
   savings: {
@@ -45,6 +47,7 @@ const chatFlow = {
 
 export default function Healthbot() {
   const flatListRef = useRef(null);
+  const inputRef = useRef(null);
 
   const [messages, setMessages] = useState([
     { id: "1", type: "bot", text: chatFlow.start.bot },
@@ -84,8 +87,10 @@ export default function Healthbot() {
     setInput("");
   };
 
+  // ✅ FIXED HERE
   const handleOptionPress = (option) => {
-    sendMessage(option.text);
+    setInput(option.text);
+    inputRef.current?.focus(); // optional but smooth UX
   };
 
   useEffect(() => {
@@ -116,7 +121,6 @@ export default function Healthbot() {
                   flexDirection: "row",
                   justifyContent: isUser ? "flex-end" : "flex-start",
                   marginBottom: 10,
-                 
                 }}
               >
                 {/* Bot Avatar */}
@@ -160,12 +164,14 @@ export default function Healthbot() {
             keyExtractor={(item, index) => index.toString()}
             showsHorizontalScrollIndicator={false}
             renderItem={({ item }) => (
-                 
               <TouchableOpacity
                 style={styles.option}
                 onPress={() => handleOptionPress(item)}
               >
-                <Image style={{width:15, height:16}} source={require('../../assets/images/option text icon.png')}/>
+                <Image
+                  style={{ width: 15, height: 16 }}
+                  source={require("../../assets/images/option text icon.png")}
+                />
                 <Text style={styles.optionText}>{item.text}</Text>
               </TouchableOpacity>
             )}
@@ -176,6 +182,7 @@ export default function Healthbot() {
         <View style={{ marginBottom: 100, backgroundColor: "white" }}>
           <View style={styles.inputContainer}>
             <TextInput
+              ref={inputRef} // ✅ added ref
               style={styles.input}
               placeholder="Ask about health or insurance..."
               value={input}
@@ -223,14 +230,14 @@ const styles = StyleSheet.create({
 
   messageBubble: {
     padding: 14,
-    borderTopRightRadius:10,
-    borderBottomLeftRadius:10,
-    borderBottomRightRadius:10,
+    borderTopRightRadius: 10,
+    borderBottomLeftRadius: 10,
+    borderBottomRightRadius: 10,
     marginBottom: 10,
-    shadowColor:'#00000',
-    shadowOffset:{width:0, height:5},
-    shadowOpacity:0.2,
-    shadowRadius:4,
+    shadowColor: "#00000",
+    shadowOffset: { width: 0, height: 5 },
+    shadowOpacity: 0.2,
+    shadowRadius: 4,
     maxWidth: "70%",
   },
 
@@ -240,28 +247,25 @@ const styles = StyleSheet.create({
   },
 
   userBubble: {
-    borderTopRightRadius:0,
-    borderTopLeftRadius:10,
+    borderTopRightRadius: 0,
+    borderTopLeftRadius: 10,
     backgroundColor: "#29A251",
     alignSelf: "flex-end",
-  
   },
 
   botText: {
-    fontFamily:'PoppinsRegular',
-    fontSize:12,
-    lineHeight:25,
+    fontFamily: "PoppinsRegular",
+    fontSize: 12,
+    lineHeight: 25,
     color: "#333",
   },
 
-  userMessage:{
-
-  },
+  userMessage: {},
 
   userText: {
-    fontFamily:'PoppinsRegular',
-    fontSize:12,
-    lineHeight:25,
+    fontFamily: "PoppinsRegular",
+    fontSize: 12,
+    lineHeight: 25,
     color: "#fff",
   },
 
@@ -271,11 +275,11 @@ const styles = StyleSheet.create({
   },
 
   option: {
-    flexDirection:'row',
-    alignItems:'center',
-    gap:4,
-    borderWidth:1,
-    borderColor:'#AE8FCF',
+    flexDirection: "row",
+    alignItems: "center",
+    gap: 4,
+    borderWidth: 1,
+    borderColor: "#AE8FCF",
     backgroundColor: "#E9DFFF",
     paddingVertical: 10,
     paddingHorizontal: 16,
@@ -284,7 +288,7 @@ const styles = StyleSheet.create({
   },
 
   optionText: {
-    fontFamily:"PoppinsRegular",
+    fontFamily: "PoppinsRegular",
     color: "#681ABB",
     fontSize: 10,
     fontWeight: "400",
