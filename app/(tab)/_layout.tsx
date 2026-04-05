@@ -4,7 +4,7 @@ import React from "react";
 import { StyleSheet, Image, Platform, View } from "react-native";
 
 export default function TabLayout() {
-  
+  const router = useRouter()
   return (
     <Tabs
       screenOptions={{
