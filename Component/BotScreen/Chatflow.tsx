@@ -43,16 +43,16 @@ const chatFlow: ChatFlow = {
       {
         text: "Does Silver Care cover dental?",
         reply: `That's an important question to ask about your coverage!
-                For specific details on what "Silver Care" covers, including dental, it's always best to:
-                 Check your policy document:** This will have the most accurate and up-to-date information.
-                 Contact the provider directly: They can confirm all the benefits included in your specific plan.
-               As HealthBot, I don't have access to the exact details of specific plans like "Silver Care." My goal is to help you understand insurance terms and general wellness tips!`,
+For specific details on what "Silver Care" covers, including dental, it's always best to:
+Check your policy document:** This will have the most accurate and up-to-date information.
+Contact the provider directly: They can confirm all the benefits included in your specific plan.
+As HealthBot, I don't have access to the exact details of specific plans like "Silver Care." My goal is to help you understand insurance terms and general wellness tips!`,
       },
       {
         text: "What is a 'deductible'?",
         reply: `That's a great question, and it's super important to understand!
-                 Think of a 'deductible' like this:
-                Your initial share: It's the amount you agree to pay for your medical costs *first* each year before your insurance starts paying its share.
+Think of a 'deductible' like this:
+Your initial share: It's the amount you agree to pay for your medical costs *first* each year before your insurance starts paying its share.
 A "personal threshold": For example, if your deductible is $1,000, you'll pay the first $1,000 of your medical bills. After you've paid that amount, your insurance will then step in to help cover the rest (according to your plan).
 It helps keep your insurance premiums lower. You've got this – understanding these terms empowers you!`,
       },
@@ -67,7 +67,7 @@ Drink water: It's free, keeps you hydrated, and often helps you feel full, reduc
 Small changes can make a big difference! You're doing great!`,
       },
     ],
-  },
+  }, 
 };
 
 export default function Healthbot() {
