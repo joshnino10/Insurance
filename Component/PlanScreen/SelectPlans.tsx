@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { plan, Plan } from "./Plans";
-import { Ionicons } from "@expo/vector-icons";
+
 
 export default function SelectPlans() {
   const [plansState, setPlansState] = useState<Plan[]>(plan);
