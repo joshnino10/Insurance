@@ -1,8 +1,14 @@
 import React from 'react'
 import { ImageBackground, StyleSheet, View, Text, TouchableOpacity } from 'react-native'
 import Feather from '@expo/vector-icons/Feather';
+import { useRouter } from 'expo-router';
 
 export default function HealthBalance() {
+  const router = useRouter()
+
+  const GoToHealth = ()=>(
+    router.push('/health/health')
+  )
 
   const Amount = '#500,000.00'
 
@@ -17,7 +23,7 @@ export default function HealthBalance() {
 
           <View style={styles.header}>
             <Text style={styles.title}>Health Balance</Text>
-            <TouchableOpacity >
+            <TouchableOpacity onPress={GoToHealth} >
 
                 <Feather name="arrow-right" size={24} color="#E8DAF6" />
             </TouchableOpacity>
