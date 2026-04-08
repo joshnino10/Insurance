@@ -4,6 +4,7 @@ import { SafeAreaView } from 'react-native-safe-area-context'
 import HealthWallet from '@/Component/HealthScreen.tsx/HealthWallet'
 import HealthDescription from '@/Component/HealthScreen.tsx/HealthDescription'
 import RecentTransaction from '@/Component/HealthScreen.tsx/RecentTransaction'
+import MonthlySummery from '@/Component/HealthScreen.tsx/MonthlySummery'
 
 export default function Health() {
   return (
@@ -11,6 +12,7 @@ export default function Health() {
         <HealthWallet/>
         <HealthDescription/>
         <RecentTransaction/>
+        <MonthlySummery/>
      
     </SafeAreaView>
   )
