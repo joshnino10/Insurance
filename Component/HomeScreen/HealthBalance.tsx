@@ -6,7 +6,7 @@ import { useRouter } from 'expo-router';
 export default function HealthBalance() {
   const router = useRouter()
 
-  const GoToHealth = ()=>(
+  const GoToHealth = () => (
     router.push('/health/health')
   )
 
@@ -23,9 +23,8 @@ export default function HealthBalance() {
 
           <View style={styles.header}>
             <Text style={styles.title}>Health Balance</Text>
-            <TouchableOpacity onPress={GoToHealth} >
-
-                <Feather name="arrow-right" size={24} color="#E8DAF6" />
+            <TouchableOpacity onPress={GoToHealth}>
+              <Feather name="arrow-right" size={24} color="#E8DAF6" />
             </TouchableOpacity>
           </View>
 
@@ -36,8 +35,8 @@ export default function HealthBalance() {
           <View style={styles.Actions}>
 
             {/* Add Funds Button */}
-            <TouchableOpacity style={styles.actionBtn1}>
-              <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+            <TouchableOpacity style={[styles.actionBtn1, { flex: 1, marginRight: 6 }]}>
+              <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center' }}>
                 <Feather
                   name="plus"
                   size={20}
@@ -49,8 +48,10 @@ export default function HealthBalance() {
             </TouchableOpacity>
 
             {/* Withdraw Button */}
-            <TouchableOpacity style={styles.actionBtn2}>
-              <Text style={styles.actionText2}>Withdraw</Text>
+            <TouchableOpacity style={[styles.actionBtn2, { flex: 1, marginLeft: 6 }]}>
+              <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center' }}>
+                <Text style={styles.actionText2}>Withdraw</Text>
+              </View>
             </TouchableOpacity>
 
           </View>
@@ -98,9 +99,8 @@ const styles = StyleSheet.create({
   },
 
   Actions: {
-    marginTop: 10,
+    marginTop: 15,
     paddingHorizontal:16,
-
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
