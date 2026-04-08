@@ -1,7 +1,14 @@
 import { StyleSheet, Text, View, Image, TouchableOpacity } from "react-native";
 import React from "react";
+import { useRouter } from "expo-router";
 
 export default function CurrentCoverage() {
+
+  const router = useRouter()
+
+  const GoToPlans = ()=>(
+    router.push('/(tab)/plans')
+  )
 
   const currentCoverage = [
     {
@@ -24,7 +31,7 @@ export default function CurrentCoverage() {
       </View>
 
       {currentCoverage.map((item) => (
-        <TouchableOpacity key={item.id} style={styles.Card}>
+        <TouchableOpacity key={item.id} style={styles.Card} onPress={GoToPlans}>
           <View style={{flexDirection:'row', gap:10}}>
             <Image style={{ width: 34, height: 34 }} source={item.Icon} />
             <View >
