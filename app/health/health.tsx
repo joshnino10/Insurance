@@ -1,4 +1,4 @@
-import { StyleSheet,Platform } from 'react-native'
+import { StyleSheet,Platform, ScrollView } from 'react-native'
 import React from 'react'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import HealthWallet from '@/Component/HealthScreen.tsx/HealthWallet'
@@ -9,10 +9,13 @@ import MonthlySummery from '@/Component/HealthScreen.tsx/MonthlySummery'
 export default function Health() {
   return (
     <SafeAreaView style={styles.SafeArea}>
+        <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={{paddingBottom:60}}>
+
         <HealthWallet/>
         <HealthDescription/>
         <RecentTransaction/>
         <MonthlySummery/>
+        </ScrollView>
      
     </SafeAreaView>
   )

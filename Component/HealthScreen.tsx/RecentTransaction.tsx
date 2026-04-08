@@ -9,7 +9,7 @@ export default function RecentTransaction() {
 
       {recentTransaction.map((item: Transaction) => {
         // Determine background color automatically
-        const iconBgColor = item.Amount < 0 ? '#D0E2FF': '#C8E6C9'; // red-ish for expense, green-ish for income
+        const iconBgColor = item.Amount < 0 ? '#CCDCF4': '#C8E6C9'; // red-ish for expense, green-ish for income
 
         return (
           <TouchableOpacity key={item.id} style={styles.transactionCard}>
