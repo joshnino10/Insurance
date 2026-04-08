@@ -1,45 +1,51 @@
-import { ImageSourcePropType } from 'react-native';
+import { ImageSourcePropType } from "react-native";
+import Feather from '@expo/vector-icons/Feather';
 
 export interface Transaction {
   id: string;
-  icon: ImageSourcePropType;
+  icon: React.ReactNode | ImageSourcePropType;
   Title: string;
   Date: string;
   Amount: number;
-  Color: string;
+  Color: string;   // For the text (amount)
+  bgColor: string; // For the icon container
 }
 
 export const recentTransaction: Transaction[] = [
   {
     id: '1',
-    icon: require('../../assets/images/check up icon.png'),
+    icon: <Feather name="arrow-up-right" size={25} color="#1A48BB" />,
     Title: 'Dr. Smith - Check-up',
     Date: 'Dec 20, 2025',
-    Amount: -45000.00, // no commas in number,
-    Color: '#000000'
+    Amount: -45000.0,
+    Color: '#000000',
+    bgColor:"#1A48BB", // red-ish for expense
   },
   {
     id: '2',
-    icon: require('../../assets/images/transfer icon.png'),
-    Title: 'Dr. Smith - Check-up',
+    icon: <Feather name="arrow-down-left" size={25} color="#29A251" />,
+    Title: 'Monthly savings transfer',
     Date: 'Dec 20, 2025',
-    Amount: -45000.00, // no commas in number
-    Color:'#1A934E',
+    Amount: 45000.0,
+    Color: '#1A934E',
+    bgColor: '#C8E6C9',
   },
   {
-    id: '1',
-    icon: require('../../assets/images/check up icon.png'),
+    id: '3',
+    icon: <Feather name="arrow-up-right" size={25} color="#1A48BB" />,
     Title: 'Dr. Smith - Check-up',
-    Date: 'Dec 20, 2025',
-    Amount: -45000.00, // no commas in number,
-    Color: '#000000'
+    Date: 'Dec 19, 2025',
+    Amount: -85000.0,
+    Color: '#000000',
+    bgColor:"#1A48BB",
   },
   {
-    id: '1',
-    icon: require('../../assets/images/transfer icon.png'),
+    id: '4',
+    icon: <Feather name="arrow-down-left" size={25} color="#29A251" />,
     Title: 'Dr. Smith - Check-up',
     Date: 'Dec 20, 2025',
-    Amount: -45000.00, // no commas in number,
-    Color: '#1A934E'
+    Amount: 100000.0,
+    Color: '#1A934E',
+    bgColor: '#C8E6C9',
   },
 ];
