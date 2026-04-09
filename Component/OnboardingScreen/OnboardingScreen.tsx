@@ -13,7 +13,7 @@ import {
     TouchableOpacity,
     View,
 } from "react-native";
-import Animated , { FadeIn, Easing, SlideInRight } from "react-native-reanimated"
+import Animated , { FadeIn, Easing, } from "react-native-reanimated"
 
 const { width, height } = Dimensions.get("window");
 
