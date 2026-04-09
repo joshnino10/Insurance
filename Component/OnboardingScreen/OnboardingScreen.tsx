@@ -115,7 +115,6 @@ const OnboardingScreen = () => {
         <Animated.Text
           key={currentIndex + "sub"}
           entering={FadeIn
-          
             .duration(1000)
             .easing(Easing.out(Easing.exp))}
           style={styles.subTitle}
@@ -135,12 +134,11 @@ const OnboardingScreen = () => {
           <Animated.Text
             key={currentIndex + "btn"}
             entering={FadeIn
-            
               .duration(1000)
               .easing(Easing.out(Easing.exp))}
             style={styles.bottomButtonText}
           >
-            Next
+            {currentIndex === onboardingData.length - 1 ? "Get Started" : "Next"}
           </Animated.Text>
 
           <Feather name="arrow-right" size={20} color="white" />
