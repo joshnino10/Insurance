@@ -13,7 +13,7 @@ import {
     TouchableOpacity,
     View,
 } from "react-native";
-import Animated , { SlideInRight, Easing } from "react-native-reanimated"
+import Animated , { FadeIn, Easing, SlideInRight } from "react-native-reanimated"
 
 const { width, height } = Dimensions.get("window");
 
@@ -85,7 +85,9 @@ const OnboardingScreen = () => {
           {onboardingData.map((_, index) => (
             <Animated.View
               key={index.toString() + currentIndex}
-              entering={SlideInRight.duration(900)}
+              entering={FadeIn
+                .duration(900)
+                .easing(Easing.out(Easing.exp))}
               style={[ 
                 styles.dot,
                 currentIndex === index ? styles.activeDot : null,
@@ -100,24 +102,21 @@ const OnboardingScreen = () => {
       </View>
 
       <View style={styles.textContainer}>
-        {/* Title */}
         <Animated.Text
           key={currentIndex}
-          entering={SlideInRight
-            .duration(1000)
-            .delay(100)
+          entering={FadeIn
+            .duration(900)
             .easing(Easing.out(Easing.exp))}
           style={styles.title}
         >
           {item.Title}
         </Animated.Text>
 
-        {/* Subtitle */}
         <Animated.Text
           key={currentIndex + "sub"}
-          entering={SlideInRight
-            .duration(1200)
-            .delay(300)
+          entering={FadeIn
+          
+            .duration(1000)
             .easing(Easing.out(Easing.exp))}
           style={styles.subTitle}
         >
@@ -133,16 +132,15 @@ const OnboardingScreen = () => {
         >
         <TouchableOpacity onPress={goToNext} style={{flexDirection:'row', gap:5, justifyContent:'center', alignItems:'center'}}>
           
-          {/* Button */}
           <Animated.Text
             key={currentIndex + "btn"}
-            entering={SlideInRight
-              .duration(1200)
-              .delay(500)
+            entering={FadeIn
+            
+              .duration(1000)
               .easing(Easing.out(Easing.exp))}
             style={styles.bottomButtonText}
           >
-            {currentIndex === onboardingData.length - 1 ? "Get Started" : "Next"}
+            Next
           </Animated.Text>
 
           <Feather name="arrow-right" size={20} color="white" />
@@ -153,7 +151,9 @@ const OnboardingScreen = () => {
   );
 
   return (
-    <View style={styles.container}>
+    <View 
+  
+    style={styles.container}>
       <StatusBar
         barStyle="light-content"
         translucent
