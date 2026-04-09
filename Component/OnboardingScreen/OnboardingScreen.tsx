@@ -13,7 +13,7 @@ import {
     TouchableOpacity,
     View,
 } from "react-native";
-import Animated , { FadeIn, Easing } from "react-native-reanimated"
+import Animated , { SlideInRight, Easing } from "react-native-reanimated"
 
 const { width, height } = Dimensions.get("window");
 
@@ -85,9 +85,7 @@ const OnboardingScreen = () => {
           {onboardingData.map((_, index) => (
             <Animated.View
               key={index.toString() + currentIndex}
-              entering={FadeIn
-                .duration(900)
-                .easing(Easing.out(Easing.exp))}
+              entering={SlideInRight.duration(900)}
               style={[ 
                 styles.dot,
                 currentIndex === index ? styles.activeDot : null,
@@ -102,20 +100,24 @@ const OnboardingScreen = () => {
       </View>
 
       <View style={styles.textContainer}>
+        {/* Title */}
         <Animated.Text
           key={currentIndex}
-          entering={FadeIn
-            .duration(900)
+          entering={SlideInRight
+            .duration(1000)
+            .delay(100)
             .easing(Easing.out(Easing.exp))}
           style={styles.title}
         >
           {item.Title}
         </Animated.Text>
 
+        {/* Subtitle */}
         <Animated.Text
           key={currentIndex + "sub"}
-          entering={FadeIn
-            .duration(1000)
+          entering={SlideInRight
+            .duration(1200)
+            .delay(300)
             .easing(Easing.out(Easing.exp))}
           style={styles.subTitle}
         >
@@ -131,10 +133,12 @@ const OnboardingScreen = () => {
         >
         <TouchableOpacity onPress={goToNext} style={{flexDirection:'row', gap:5, justifyContent:'center', alignItems:'center'}}>
           
+          {/* Button */}
           <Animated.Text
             key={currentIndex + "btn"}
-            entering={FadeIn
-              .duration(1000)
+            entering={SlideInRight
+              .duration(1200)
+              .delay(500)
               .easing(Easing.out(Easing.exp))}
             style={styles.bottomButtonText}
           >
