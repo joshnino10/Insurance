@@ -1,5 +1,7 @@
+import Notice from "@/Component/PlanScreen/Notice";
 import PlanHeader from "@/Component/PlanScreen/PlanHeader";
 import SelectPlans from "@/Component/PlanScreen/SelectPlans";
+import WhyInsurance from "@/Component/PlanScreen/WhyInsurance";
 import React from "react";
 import { StyleSheet, Platform, ScrollView } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
@@ -7,9 +9,11 @@ import { SafeAreaView } from "react-native-safe-area-context";
 export default function Plans() {
   return (
     <SafeAreaView style={styles.SafeArea}>
-      <ScrollView contentContainerStyle={{paddingBottom:80}}>
+      <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={{paddingBottom:80}}>
        <PlanHeader />
        <SelectPlans/>
+       <Notice/>
+       <WhyInsurance/>
       </ScrollView>
       
     </SafeAreaView>
