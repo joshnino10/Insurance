@@ -1,5 +1,6 @@
 import CurrentCoverage from '@/Component/HomeScreen/CurrentCoverage'
 import HealthBalance from '@/Component/HomeScreen/HealthBalance'
+import HealthTip from '@/Component/HomeScreen/HealthTip'
 import HomeHeader from '@/Component/HomeScreen/HomeHeader'
 import QuickAction from '@/Component/HomeScreen/QuickAction'
 import RecentlyActivity from '@/Component/HomeScreen/RecentlyActivity'
@@ -17,6 +18,7 @@ export default function Home() {
             <CurrentCoverage/>
             <QuickAction/>
             <RecentlyActivity/>
+            <HealthTip/>
 
         </ScrollView>
     
