@@ -215,7 +215,7 @@ export default function Healthbot() {
       {/* Input */}
       <KeyboardAvoidingView
         behavior={Platform.OS === "ios" ? "padding" : "height"}
-        keyboardVerticalOffset={80}
+        keyboardVerticalOffset={55}
       >
         <View style={{ marginBottom: 100, backgroundColor: "white" }}>
           <View style={styles.inputContainer}>
