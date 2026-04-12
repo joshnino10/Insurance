@@ -1,3 +1,6 @@
+
+import Logout from "@/Component/ProfileScreen/Logout";
+import Notification from "@/Component/ProfileScreen/Notification";
 import PaymentMethod from "@/Component/ProfileScreen/PaymentMethod";
 import Personalnfo from "@/Component/ProfileScreen/Personalnfo";
 import ProfileHeader from "@/Component/ProfileScreen/ProfileHeader";
@@ -18,6 +21,9 @@ export default function Profile() {
         <Personalnfo/>
         <Security/>
         <PaymentMethod/>
+        <Notification/>
+        <Logout/>
+       
       </ScrollView>
     </SafeAreaView>
   );
