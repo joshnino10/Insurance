@@ -38,36 +38,22 @@ const chatFlow: ChatFlow = {
     options: [
       {
         text: "How much should I save for emergencies?",
-        reply: `That's a fantastic question for protecting your future! It's smart to think about saving for unexpected health needs.Here’s a simple way to approach it:Start small, stay consistent, Even setting aside $5 or $10 every week can build up surprisingly fast.Think of common costs: Aim to save enough to cover things like basic medicines, a doctor's visit, or transport to a clinic.Your "Comfort Fund": This saving helps give you peace of mind when small surprises pop up. Every single Dollar you put aside is a step towards a more secure you! Youre doing great by planning ahead.`,
+        reply: `That's a fantastic question for protecting your future!...`,
       },
       {
         text: "Does Silver Care cover dental?",
-        reply: `That's an important question to ask about your coverage!
-For specific details on what "Silver Care" covers, including dental, it's always best to:
-Check your policy document:** This will have the most accurate and up-to-date information.
-Contact the provider directly: They can confirm all the benefits included in your specific plan.
-As HealthBot, I don't have access to the exact details of specific plans like "Silver Care." My goal is to help you understand insurance terms and general wellness tips!`,
+        reply: `That's an important question to ask about your coverage!...`,
       },
       {
         text: "What is a 'deductible'?",
-        reply: `That's a great question, and it's super important to understand!
-Think of a 'deductible' like this:
-Your initial share: It's the amount you agree to pay for your medical costs *first* each year before your insurance starts paying its share.
-A "personal threshold": For example, if your deductible is $1,000, you'll pay the first $1,000 of your medical bills. After you've paid that amount, your insurance will then step in to help cover the rest (according to your plan).
-It helps keep your insurance premiums lower. You've got this – understanding these terms empowers you!`,
+        reply: `That's a great question, and it's super important to understand!...`,
       },
       {
         text: "Tips for chip healthy eating?",
-        reply: `That's a fantastic goal for your well-being and your wallet! Eating healthy doesn't have to be expensive.
-Here are some simple tips:
-Cook at home: Preparing your own meals is usually much cheaper and healthier than eating out.
-Embrace local and seasonal: Fruits and veggies bought in season or from local markets are often more affordable and tastier.
-Beans and lentils are superheroes: They're packed with protein and fiber, super cheap, and can be used in many dishes.
-Drink water: It's free, keeps you hydrated, and often helps you feel full, reducing cravings for sugary drinks or snacks.
-Small changes can make a big difference! You're doing great!`,
+        reply: `That's a fantastic goal for your well-being and your wallet!...`,
       },
     ],
-  }, 
+  },
 };
 
 export default function Healthbot() {
@@ -90,7 +76,6 @@ export default function Healthbot() {
       matchedOption?.reply ||
       "I understand 👍. You can also use the options above.";
 
-    // Add user message + placeholder thinking message
     setMessages((prev) => [
       ...prev,
       {
@@ -107,7 +92,6 @@ export default function Healthbot() {
 
     setInput("");
 
-    // Simulate delay for bot response
     setTimeout(() => {
       setMessages((prev) =>
         prev.map((msg) =>
@@ -116,7 +100,7 @@ export default function Healthbot() {
             : msg
         )
       );
-    }, 1500); // 1.5s delay
+    }, 1500);
   };
 
   const handleOptionPress = (option: Option) => {
@@ -130,99 +114,91 @@ export default function Healthbot() {
 
   return (
     <View style={styles.SafeArea}>
-      <KeyboardAvoidingView
-        style={{ flex: 1 }}
-        behavior={Platform.OS === "ios" ? "padding" : "height"}
-      >
-        {/* Messages */}
-        <FlatList
-          ref={flatListRef}
-          data={messages}
-          keyExtractor={(item) => item.id}
-          contentContainerStyle={styles.messagesContainer}
-          onContentSizeChange={() =>
-            flatListRef.current?.scrollToEnd({ animated: true })
-          }
-          renderItem={({ item }) => {
-            const isUser = item.type === "user";
-            const isThinking = item.type === "thinking";
+      {/* Messages */}
+      <FlatList
+        ref={flatListRef}
+        data={messages}
+        keyExtractor={(item) => item.id}
+        contentContainerStyle={styles.messagesContainer}
+        onContentSizeChange={() =>
+          flatListRef.current?.scrollToEnd({ animated: true })
+        }
+        renderItem={({ item }) => {
+          const isUser = item.type === "user";
+          const isThinking = item.type === "thinking";
 
-            return (
+          return (
+            <View
+              style={{
+                flexDirection: "row",
+                justifyContent: isUser ? "flex-end" : "flex-start",
+                marginBottom: 10,
+              }}
+            >
+              {!isUser && (
+                <Image
+                  style={{ width: 30, height: 30, marginRight: 6 }}
+                  source={require("../../assets/images/bot icon.png")}
+                />
+              )}
+
               <View
-                style={{
-                  flexDirection: "row",
-                  justifyContent: isUser ? "flex-end" : "flex-start",
-                  marginBottom: 10,
-                }}
+                style={[
+                  styles.userMessage,
+                  styles.messageBubble,
+                  isUser ? styles.userBubble : styles.botBubble,
+                ]}
               >
-                {/* Bot avatar */}
-                {!isUser && (
-                  <Image
-                    style={{ width: 30, height: 30, marginRight: 6 }}
-                    source={require("../../assets/images/bot icon.png")}
-                  />
-                )}
-
-                <View
-                  style={[
-                    styles.userMessage,
-                    styles.messageBubble,
-                    isUser ? styles.userBubble : styles.botBubble,
-                  ]}
-                >
-                  {isThinking ? (
-                    <View
-                      style={{
-                        flexDirection: "row",
-                        alignItems: "center",
-                        gap: 6,
-                      }}
-                    >
-                      <ActivityIndicator size="small" color="#681ABB" />
-                      <Text style={styles.botText}>Thinking...</Text>
-                    </View>
-                  ) : (
-                    <Text style={isUser ? styles.userText : styles.botText}>
-                      {item.text}
-                    </Text>
-                  )}
-                </View>
-
-                {/* User avatar */}
-                {isUser && (
-                  <Image
-                    style={{ width: 30, height: 30, marginLeft: 6 }}
-                    source={require("../../assets/images/user message icon.png")}
-                  />
+                {isThinking ? (
+                  <View style={{ flexDirection: "row", alignItems: "center", gap: 6 }}>
+                    <ActivityIndicator size="small" color="#681ABB" />
+                    <Text style={styles.botText}>Thinking...</Text>
+                  </View>
+                ) : (
+                  <Text style={isUser ? styles.userText : styles.botText}>
+                    {item.text}
+                  </Text>
                 )}
               </View>
-            );
-          }}
-        />
 
-        {/* Options */}
-        <View style={styles.optionsContainer}>
-          <FlatList
-            horizontal
-            data={chatFlow[currentStep].options}
-            keyExtractor={(_, index) => index.toString()}
-            showsHorizontalScrollIndicator={false}
-            renderItem={({ item }) => (
-              <TouchableOpacity
-                style={styles.option}
-                onPress={() => handleOptionPress(item)}
-              >
+              {isUser && (
                 <Image
-                  style={{ width: 15, height: 16 }}
-                  source={require("../../assets/images/option text icon.png")}
+                  style={{ width: 30, height: 30, marginLeft: 6 }}
+                  source={require("../../assets/images/user message icon.png")}
                 />
-                <Text style={styles.optionText}>{item.text}</Text>
-              </TouchableOpacity>
-            )}
-          />
-        </View>
+              )}
+            </View>
+          );
+        }}
+      />
 
-        {/* Input */}
+      {/* Options */}
+      <View style={styles.optionsContainer}>
+        <FlatList
+          horizontal
+          data={chatFlow[currentStep].options}
+          keyExtractor={(_, index) => index.toString()}
+          showsHorizontalScrollIndicator={false}
+          renderItem={({ item }) => (
+            <TouchableOpacity
+              style={styles.option}
+              onPress={() => handleOptionPress(item)}
+            >
+              <Image
+                style={{ width: 15, height: 16 }}
+                source={require("../../assets/images/option text icon.png")}
+              />
+              <Text style={styles.optionText}>{item.text}</Text>
+            </TouchableOpacity>
+          )}
+        />
+      </View>
+
+      {/* Input */}
+      <KeyboardAvoidingView
+        behavior={Platform.OS === "ios" ? "padding" : "height"}
+        keyboardVerticalOffset={80}
+      >
         <View style={{ marginBottom: 100, backgroundColor: "white" }}>
           <View style={styles.inputContainer}>
             <TextInput
