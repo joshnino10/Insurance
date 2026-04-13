@@ -86,7 +86,7 @@ export default function Login() {
 
   return (
     <SafeAreaView style={styles.SafeArea}>
-      <StatusBar barStyle="dark-content" backgroundColor="white" />
+      <StatusBar barStyle="dark-content" backgroundColor="#D9D9D900" />
       <View style={styles.page}>
         <ScrollView contentContainerStyle={{ paddingBottom: 50 }}>
           <View style={styles.container}>

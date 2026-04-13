@@ -12,7 +12,7 @@ import { SafeAreaView } from "react-native-safe-area-context";
 export default function Profile() {
   return (
     <SafeAreaView style={styles.SafeArea}>
-      <StatusBar barStyle="dark-content" backgroundColor="white"  />
+      <StatusBar barStyle="dark-content" backgroundColor="#D9D9D900"/>
       <ScrollView
         showsVerticalScrollIndicator={false}
         contentContainerStyle={{ paddingBottom: 80 }}

@@ -134,7 +134,7 @@ import { SafeAreaView } from "react-native-safe-area-context";
   
     return (
       <SafeAreaView style={styles.SafeArea}>
-        <StatusBar barStyle="dark-content" backgroundColor="white" />
+        <StatusBar barStyle="dark-content" backgroundColor="#D9D9D900" />
         <View style={styles.page}>
           <ScrollView showsHorizontalScrollIndicator={false} contentContainerStyle={{ paddingBottom: 50 }}>
             <View style={styles.container}>

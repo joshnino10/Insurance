@@ -12,7 +12,7 @@ export default function Home() {
   return (
     <SafeAreaView style={styles.SafeArea}>
         <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={{ paddingBottom: 80 }} >
-          <StatusBar barStyle="dark-content" backgroundColor="white"/>
+          <StatusBar barStyle="dark-content" backgroundColor="#D9D9D900"/>
             <HomeHeader/>
             <HealthBalance/>
             <CurrentCoverage/>
