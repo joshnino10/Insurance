@@ -23,10 +23,6 @@ export default function TotalBalance() {
             </View>
         </View>
 
-
-
-
-
       </ImageBackground>
     </View>
   );
