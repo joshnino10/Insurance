@@ -22,9 +22,6 @@ export default function Savings() {
         <Actions/>
         <SavingTips/>
 
-
-
-
       </ScrollView>
     </SafeAreaView>
   );
