@@ -35,7 +35,7 @@ import { SafeAreaView } from "react-native-safe-area-context";
       router.push("/(auth)/login");
     };
   
-    // Validators
+    
     const validateFullName = (value: string) => {
       if (!value) setFullNameError("Full Name is required");
       else setFullNameError("");
